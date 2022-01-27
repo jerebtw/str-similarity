@@ -1,0 +1,14 @@
+[package]
+name = "str-similarity"
+description = "A string similarity library"
+authors = ["Jerebtw"]
+version = "0.1.0"
+license = "MIT"
+edition = "2021"
+repository = "https://github.com/jerebtw/str-similarity"
+keywords = ["string", "similarity"]
+
+[dependencies]
+regex = "1.5.4"
+lazy_static = "1.4.0"
+
