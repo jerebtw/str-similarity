@@ -6,7 +6,7 @@ use std::collections::BTreeMap;
 
 pub fn compare_two_strings(first: &str, second: &str) -> f64 {
     lazy_static! {
-        static ref RE: Regex = Regex::new("\n\t ").unwrap();
+        static ref RE: Regex = Regex::new("\n|\t| ").unwrap();
     }
 
     let first = RE.replace_all(first, "");
@@ -52,6 +52,13 @@ mod tests {
     fn check() {
         let result: f64 = compare_two_strings("Night", "Nacht");
         assert_eq!(result, 0.25);
+        assert_ne!(result, 0.5);
+    }
+
+    #[test]
+    fn check_space() {
+        let result: f64 = compare_two_strings("Night Night Night", "Nacht Nacht Nacht");
+        assert_eq!(result, 0.35714285714285715);
         assert_ne!(result, 0.5);
     }
 }
