@@ -44,21 +44,35 @@ pub fn compare_two_strings(first: &str, second: &str) -> f64 {
     (2.0 * intersection_size) / (first.len() as f64 + second.len() as f64 - 2.0)
 }
 
-#[cfg(test)]
-mod tests {
-    use super::compare_two_strings;
+pub struct MatchResult {
+    pub score: f64,
+    pub string: String,
+}
 
-    #[test]
-    fn check() {
-        let result: f64 = compare_two_strings("Night", "Nacht");
-        assert_eq!(result, 0.25);
-        assert_ne!(result, 0.5);
+pub struct BestMatchResult {
+    pub best_result_index: usize,
+    pub result: Vec<MatchResult>,
+}
+
+pub fn find_best_match(string: &str, arr: Vec<&str>) -> BestMatchResult {
+    let mut result: Vec<MatchResult> = Vec::new();
+    let mut best_result_index: usize = 0;
+
+    for (index, item) in arr.iter().enumerate() {
+        let score = compare_two_strings(string, item);
+
+        result.push(MatchResult {
+            score,
+            string: item.to_string(),
+        });
+
+        if score > result[best_result_index].score {
+            best_result_index = index;
+        }
     }
 
-    #[test]
-    fn check_space() {
-        let result: f64 = compare_two_strings("Night Night Night", "Nacht Nacht Nacht");
-        assert_eq!(result, 0.35714285714285715);
-        assert_ne!(result, 0.5);
+    BestMatchResult {
+        best_result_index,
+        result,
     }
 }
