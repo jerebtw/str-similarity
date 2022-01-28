@@ -6,7 +6,7 @@ use std::collections::BTreeMap;
 
 pub fn compare_two_strings(first: &str, second: &str) -> f64 {
     lazy_static! {
-        static ref RE: Regex = Regex::new("\n|\t| ").unwrap();
+        static ref RE: Regex = Regex::new("\\s+").unwrap();
     }
 
     let first = RE.replace_all(first, "");
