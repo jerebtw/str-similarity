@@ -9,5 +9,5 @@ repository = "https://github.com/jerebtw/str-similarity"
 keywords = ["string", "similarity"]
 
 [dependencies]
-regex = "1.5.5"
+regex = "1.5.6"
 lazy_static = "1.4.0"
