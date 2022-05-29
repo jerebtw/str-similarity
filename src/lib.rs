@@ -16,11 +16,11 @@ pub struct BestMatchResult {
 
 pub fn compare_two_strings(first: &str, second: &str) -> f64 {
   lazy_static! {
-    static ref RE: Regex = Regex::new("\\s+").unwrap();
+    static ref SPACE_REGEX: Regex = Regex::new("\\s+").unwrap();
   }
 
-  let first = RE.replace_all(first, "");
-  let second = RE.replace_all(second, "");
+  let first = SPACE_REGEX.replace_all(first, "");
+  let second = SPACE_REGEX.replace_all(second, "");
 
   if first == second {
     return 1.0;
