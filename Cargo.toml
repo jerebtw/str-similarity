@@ -9,7 +9,7 @@ repository = "https://github.com/jerebtw/str-similarity"
 keywords = ["string", "similarity"]
 
 [dev-dependencies]
-criterion = "0.3"
+criterion = "0.4"
 
 [[bench]]
 name = "sim_benchmark"
